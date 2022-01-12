@@ -12,33 +12,29 @@ import DFK from 'defikingdoms'
 ```javascript
 const dfk = new DFK({
   wallet: {
-    privateKey: '',
+    privateKey: '<YOUR_PRIVATE_KEY>',
   },
 });
 ```
 
-### Call dfk methods
+### Bid on a hero
 ```javascript
-dfk.salesAuction.bid({
-  tokenId,
-  bidAmount,
-  options
-})
-```
+// first, you must approve the jewel
+const approveReceipt = await dfk.jewel.approve({
+  address: dfk.salesAuction.address,
+  amount: '<AMOUNT>',
+});
 
-### Get history
-```javascript
-dfk.getHistory({
-  wallet,
-  options
-})
+// then, you can bid on the hero
+const bidReceipt = await dfk.salesAuction.bid({
+  tokenId: '<TOKEN_ID>',
+  amount: '<AMOUNT>',
+});
 ```
 
 ### Subscribe to events
 ```javascript
-dfk.subscribe({
-  events,
-  callback,
-  options
-})
+dfk.salesAuction.web3.events.AuctionCreated(async function (error, event) {
+  // do something with event
+};
 ```
