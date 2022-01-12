@@ -1,0 +1,23 @@
+{
+  "name": "defikingdoms",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "defikingdoms is a community project that allows you to easily interact with DefiKingdoms.",
+  "main": "DFK.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthew-h-cromer/defikingdoms.git"
+  },
+  "author": "Matthew Cromer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matthew-h-cromer/defikingdoms/issues"
+  },
+  "homepage": "https://github.com/matthew-h-cromer/defikingdoms#readme",
+  "dependencies": {
+    "web3": "^1.6.1"
+  }
+}
