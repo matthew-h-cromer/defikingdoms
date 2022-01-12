@@ -22,7 +22,7 @@ const dfk = new DFK({
 
 ### Get hero data
 ```javascript
-const hero = await dfk.hero.getHero({ tokenId });
+const hero = await dfk.hero.getHero({ tokenId: '<TOKEN_ID'> });
 ```
 
 ### Bid on a hero
