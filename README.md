@@ -20,6 +20,11 @@ const dfk = new DFK({
 });
 ```
 
+### Get hero data
+```javascript
+const hero = await dfk.hero.getHero({ tokenId });
+```
+
 ### Bid on a hero
 ```javascript
 // first, you must approve the jewel
