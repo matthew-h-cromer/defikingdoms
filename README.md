@@ -1,5 +1,8 @@
 # defikingdoms
-defikingdoms is a community project that allows you to easily interact with DefiKingdoms.
+Allows you to easily interact with DefiKingdoms.
+
+Tip jar   `0x17ddb8a6d7099000491a5fced09447847179f993`
+
 
 ## Usage
 
