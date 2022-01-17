@@ -15,9 +15,10 @@ import bid from './contracts/salesAuction/methods/bid.js';
 
 export default class DFK {
   constructor(params) {
+    this.initWeb3();
+
     const { wallet, options } = params ?? {};
 
-    this.web3 = new Web3(new Web3.providers.WebsocketProvider('wss://ws.s0.t.hmny.io/'));
     this.wallet = this.getWallet(wallet);
     this.options = options;
 
@@ -39,6 +40,29 @@ export default class DFK {
       methods: [bid],
       dfk: this,
     });
+  }
+
+  initWeb3() {
+    const newProvider = () =>
+      new Web3.providers.WebsocketProvider('wss://ws.s0.t.hmny.io/', {
+        reconnect: {
+          auto: true,
+          delay: 5000, // ms
+          maxAttempts: 5,
+          onTimeout: false,
+        },
+      });
+
+    this.web3 = new Web3(newProvider());
+
+    const checkActive = () => {
+      if (!this.web3.currentProvider.connected) {
+        console.log('web3 provider is no longer connected. reconnecting...');
+        this.web3.setProvider(newProvider());
+      }
+    };
+
+    setInterval(checkActive, 2000);
   }
 
   getWallet = getWallet;
