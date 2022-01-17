@@ -23,6 +23,8 @@ export default class DFK {
     this.wallet = this.getWallet(wallet);
     this.options = options;
 
+    if (this.options?.pollGas) this.pollGasPrice();
+
     this.hero = new Contract({
       address: '0x5f753dcdf9b1ad9aabc1346614d1f4746fd6ce5c',
       abi: HeroAbi,
@@ -64,6 +66,12 @@ export default class DFK {
     };
 
     setInterval(checkActive, 2000);
+  }
+
+  async pollGasPrice() {
+    this.latestGasPrice = await this.web3.eth.getGasPrice();
+
+    setTimeout(() => this.pollGasPrice(), 60000);
   }
 
   getWallet = getWallet;
