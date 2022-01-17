@@ -1,5 +1,8 @@
 # defikingdoms
-defikingdoms is a community project that allows you to easily interact with DefiKingdoms.
+Allows you to easily interact with DefiKingdoms.
+
+Tip jar (harmony): `0x17ddb8a6d7099000491a5fced09447847179f993`
+
 
 ## Usage
 
@@ -15,6 +18,11 @@ const dfk = new DFK({
     privateKey: '<YOUR_PRIVATE_KEY>',
   },
 });
+```
+
+### Get hero data
+```javascript
+const hero = await dfk.hero.getHero({ tokenId: '<TOKEN_ID'> });
 ```
 
 ### Bid on a hero
