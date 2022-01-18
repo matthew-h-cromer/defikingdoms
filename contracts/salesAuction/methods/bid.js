@@ -1,4 +1,4 @@
-export default async function bid({ tokenId, amount }) {
+export default async function bid({ tokenId, amount, gas, gasPrice }) {
   if (!tokenId) throw 'tokenId must be provided';
   if (typeof tokenId !== 'string') throw 'tokenId must be string';
   if (!amount) throw 'amount must be provided';
@@ -7,6 +7,8 @@ export default async function bid({ tokenId, amount }) {
   const receipt = await this.dfk.sendSignedTransaction({
     transaction: this.web3.methods.bid(tokenId, amount),
     wallet: this.dfk.wallet,
+    gas,
+    gasPrice,
   });
 
   return receipt;
