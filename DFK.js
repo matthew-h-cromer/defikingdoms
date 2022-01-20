@@ -8,6 +8,7 @@ import HeroAbi from './contracts/hero/HeroAbi.js';
 import getHero from './contracts/hero/methods/getHero.js';
 import getUserHeroes from './contracts/hero/methods/getUserHeroes.js';
 import tokenByIndex from './contracts/hero/methods/tokenByIndex.js';
+import totalSupply from './contracts/hero/methods/totalSupply.js';
 // jewel
 import JewelAbi from './contracts/jewel/JewelAbi.js';
 import approve from './contracts/jewel/methods/approve.js';
@@ -29,7 +30,7 @@ export default class DFK {
     this.hero = new Contract({
       address: '0x5f753dcdf9b1ad9aabc1346614d1f4746fd6ce5c',
       abi: HeroAbi,
-      methods: [getHero, getUserHeroes, tokenByIndex],
+      methods: [getHero, getUserHeroes, tokenByIndex, totalSupply],
       dfk: this,
     });
     this.jewel = new Contract({
