@@ -18,9 +18,9 @@ import bid from './contracts/salesAuction/methods/bid.js';
 
 export default class DFK {
   constructor(params) {
-    this.initWeb3();
-
     const { wallet, options } = params ?? {};
+
+    this.initWeb3({ providerURL: this.options.providerURL });
 
     this.wallet = this.getWallet(wallet);
     this.options = options;
@@ -47,9 +47,9 @@ export default class DFK {
     });
   }
 
-  initWeb3() {
+  initWeb3({ providerURL }) {
     const newProvider = () =>
-      new Web3.providers.WebsocketProvider('wss://ws.s0.t.hmny.io/', {
+      new Web3.providers.WebsocketProvider(providerURL ?? 'wss://ws.s0.t.hmny.io/', {
         reconnect: {
           auto: true,
           delay: 5000, // ms
