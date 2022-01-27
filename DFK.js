@@ -20,7 +20,7 @@ export default class DFK {
   constructor(params) {
     const { wallet, options } = params ?? {};
 
-    this.initWeb3({ providerURL: this.options.providerURL });
+    this.initWeb3({ providerURL: this.options?.providerURL });
 
     this.wallet = this.getWallet(wallet);
     this.options = options;
