@@ -12,9 +12,15 @@ export default async function ({ transaction, gas, gasPrice }) {
 
   if (gasPrice) tx.gasPrice = gasPrice;
 
-  const signed = await this.wallet.signTransaction(tx);
+  const result = {};
 
-  const receipt = await this.web3.eth.sendSignedTransaction(signed.rawTransaction);
-
-  return receipt;
+  try {
+    const signed = await this.wallet.signTransaction(tx);
+    result.receipt = await this.web3.eth.sendSignedTransaction(signed.rawTransaction);
+  } catch (e) {
+    result.error = e.reason ?? 'Unknown error';
+    result.receipt = e.receipt;
+  } finally {
+    return result;
+  }
 }

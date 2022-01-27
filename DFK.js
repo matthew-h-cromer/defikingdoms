@@ -60,6 +60,8 @@ export default class DFK {
 
     this.web3 = new Web3(newProvider());
 
+    this.web3.eth.handleRevert = true;
+
     const checkActive = () => {
       if (!this.web3.currentProvider.connected) {
         console.log('web3 provider is no longer connected. reconnecting...');
