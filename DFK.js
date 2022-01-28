@@ -1,6 +1,6 @@
 import Web3 from 'web3';
 import Contract from './Contract.js';
-import LogsDecoder from 'logs-decoder';
+import abiDecoder from 'abi-decoder';
 
 // general methods
 import getWallet from './general_methods/getWallet.js';
@@ -48,9 +48,9 @@ export default class DFK {
       dfk: this,
     });
 
-    this.abiDecoder = LogsDecoder.create();
+    this.abiDecoder = abiDecoder;
 
-    [HeroAbi, JewelAbi, SalesAuctionAbi].map(abi => this.abiDecoder.addABI(abi));
+    [(HeroAbi, JewelAbi, SalesAuctionAbi)].map(abi => this.abiDecoder.addABI(abi));
   }
 
   initWeb3({ providerURL }) {
