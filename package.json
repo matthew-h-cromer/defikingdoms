@@ -1,6 +1,9 @@
 {
   "name": "defikingdoms",
   "type": "module",
+  "engines": {
+    "node": "14.17.5"
+  },
   "version": "1.0.0",
   "description": "defikingdoms is a community project that allows you to easily interact with DefiKingdoms.",
   "main": "DFK.js",
