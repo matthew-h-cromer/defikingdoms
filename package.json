@@ -2,7 +2,7 @@
   "name": "defikingdoms",
   "type": "module",
   "engines": {
-    "node": "14.17.5"
+    "node": "16.13.12"
   },
   "version": "1.0.0",
   "description": "defikingdoms is a community project that allows you to easily interact with DefiKingdoms.",
