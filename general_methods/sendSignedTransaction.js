@@ -23,6 +23,7 @@ export default async function ({ transaction, gas, gasPrice, nonce }) {
   } catch (e) {
     result.error = e.reason ?? e.message ?? 'unknown error';
     result.tx = e.receipt;
+    result.signature = signature;
   } finally {
     return result;
   }
