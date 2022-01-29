@@ -27,6 +27,7 @@ export default class DFK {
     this.options = options;
 
     if (this.options?.pollGas) this.pollGasPrice();
+    if (this.options?.pollNonce) this.pollNonce();
 
     this.hero = new Contract({
       address: '0x5f753dcdf9b1ad9aabc1346614d1f4746fd6ce5c',
@@ -81,6 +82,12 @@ export default class DFK {
     this.latestGasPrice = await this.web3.eth.getGasPrice();
 
     setTimeout(() => this.pollGasPrice(), 60000);
+  }
+
+  async pollNonce() {
+    this.latestNonce = await this.web3.eth.getTransactionCount(this.wallet.address);
+
+    setTimeout(() => this.pollNonce(), 10000);
   }
 
   getWallet = getWallet;
