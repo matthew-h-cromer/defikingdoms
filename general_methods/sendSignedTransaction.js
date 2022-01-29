@@ -14,7 +14,7 @@ export default async function ({ transaction, gas, gasPrice, nonce }) {
 
   if (nonce) tx.nonce = nonce;
 
-  const result = { inputTx: tx };
+  let result = { inputTx: tx };
 
   try {
     const signed = await this.wallet.signTransaction(tx);
