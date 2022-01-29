@@ -21,10 +21,11 @@ export default class DFK {
   constructor(params) {
     const { wallet, options } = params ?? {};
 
+    this.options = options;
+
     this.initWeb3({ providerURL: this.options?.providerURL });
 
     this.wallet = this.getWallet(wallet);
-    this.options = options;
 
     if (this.options?.pollGas) this.pollGasPrice();
     if (this.options?.pollNonce) this.pollNonce();
