@@ -20,11 +20,15 @@ import multiBid from './contracts/salesAuction/methods/multiBid.js';
 
 export default class DFK {
   constructor(params) {
-    const { wallet, options } = params ?? {};
+    const { name, wallet, options } = params ?? {};
 
+    this.name = name;
     this.options = options;
 
-    this.initWeb3({ providerURL: this.options?.providerURL });
+    this.initWeb3({
+      providerURL: this.options?.providerURL,
+      providerType: this.options?.providerType,
+    });
 
     this.wallet = this.getWallet(wallet);
 
@@ -55,29 +59,33 @@ export default class DFK {
     [(HeroAbi, JewelAbi, SalesAuctionAbi)].map(abi => this.abiDecoder.addABI(abi));
   }
 
-  initWeb3({ providerURL }) {
+  initWeb3({ providerURL, providerType }) {
     const newProvider = () =>
-      new Web3.providers.WebsocketProvider(providerURL ?? 'wss://ws.s0.t.hmny.io/', {
-        reconnect: {
-          auto: true,
-          delay: 5000, // ms
-          maxAttempts: 5,
-          onTimeout: false,
-        },
-      });
+      providerType === 'websocket'
+        ? new Web3.providers.WebsocketProvider(providerURL ?? 'wss://ws.s0.t.hmny.io/', {
+            reconnect: {
+              auto: true,
+              delay: 5000, // ms
+              maxAttempts: 5,
+              onTimeout: false,
+            },
+          })
+        : new Web3.providers.HttpProvider(providerURL ?? 'https://rpc.s0.t.hmny.io');
 
     this.web3 = new Web3(newProvider());
 
     this.web3.eth.handleRevert = true;
 
-    const checkActive = () => {
-      if (!this.web3.currentProvider.connected) {
-        console.log('web3 provider is no longer connected. reconnecting...');
-        this.web3.setProvider(newProvider());
-      }
-    };
+    if (providerType === 'websocket') {
+      const checkActive = () => {
+        if (!this.web3.currentProvider.connected) {
+          console.log('web3 provider is no longer connected. reconnecting...');
+          this.web3.setProvider(newProvider());
+        }
+      };
 
-    setInterval(checkActive, 2000);
+      setInterval(checkActive, 2000);
+    }
   }
 
   async pollGasPrice() {
