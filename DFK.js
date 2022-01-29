@@ -16,6 +16,7 @@ import approve from './contracts/jewel/methods/approve.js';
 // salesAuction
 import SalesAuctionAbi from './contracts/salesAuction/SalesAuctionAbi.js';
 import bid from './contracts/salesAuction/methods/bid.js';
+import multiBid from './contracts/salesAuction/methods/multiBid.js';
 
 export default class DFK {
   constructor(params) {
@@ -45,7 +46,7 @@ export default class DFK {
     this.salesAuction = new Contract({
       address: '0x13a65B9F8039E2c032Bc022171Dc05B30c3f2892',
       abi: SalesAuctionAbi,
-      methods: [bid],
+      methods: [bid, multiBid],
       dfk: this,
     });
 

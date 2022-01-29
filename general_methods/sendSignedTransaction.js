@@ -4,25 +4,25 @@ export default async function ({ transaction, gas, gasPrice, nonce }) {
     data: transaction.encodeABI(),
   };
 
-  if (gas) {
+  if (gas !== undefined) {
     tx.gas = gas;
   } else {
-    tx.gas = (await transaction.estimateGas({ from: this.wallet.address })) * 3;
+    tx.gas = await transaction.estimateGas({ from: this.wallet.address });
   }
 
-  if (gasPrice) tx.gasPrice = gasPrice;
+  if (gasPrice !== undefined) tx.gasPrice = gasPrice;
 
-  if (nonce) tx.nonce = nonce;
+  if (nonce !== undefined) tx.nonce = nonce;
 
-  let result = { inputTx: tx };
+  let result = { txInput: tx };
 
   try {
     const signed = await this.wallet.signTransaction(tx);
-    result.receipt = await this.web3.eth.sendSignedTransaction(signed.rawTransaction);
+    result.tx = await this.web3.eth.sendSignedTransaction(signed.rawTransaction);
     // result.gasSpent = BigInt(receipt.gas) * BigInt(receipt.gasPrice);
   } catch (e) {
     result.error = e.reason ?? e.message ?? 'unknown error';
-    result.receipt = e.receipt;
+    result.tx = e.receipt;
   } finally {
     return result;
   }
