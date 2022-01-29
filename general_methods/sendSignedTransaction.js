@@ -1,4 +1,4 @@
-export default async function ({ transaction, gas, gasPrice }) {
+export default async function ({ transaction, gas, gasPrice, nonce }) {
   let tx = {
     to: transaction._parent._address,
     data: transaction.encodeABI(),
@@ -12,11 +12,14 @@ export default async function ({ transaction, gas, gasPrice }) {
 
   if (gasPrice) tx.gasPrice = gasPrice;
 
-  const result = {};
+  if (nonce) tx.nonce = nonce;
+
+  const result = { inputTx: tx };
 
   try {
     const signed = await this.wallet.signTransaction(tx);
     result.receipt = await this.web3.eth.sendSignedTransaction(signed.rawTransaction);
+    // result.gasSpent = BigInt(receipt.gas) * BigInt(receipt.gasPrice);
   } catch (e) {
     result.error = e.reason ?? e.message ?? 'unknown error';
     result.receipt = e.receipt;

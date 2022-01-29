@@ -1,4 +1,4 @@
-export default async function bid({ tokenId, amount, gas, gasPrice }) {
+export default async function bid({ tokenId, amount, gas, gasPrice, nonce }) {
   if (!tokenId) throw 'tokenId must be provided';
   if (typeof tokenId !== 'string') throw 'tokenId must be string';
   if (!amount) throw 'amount must be provided';
@@ -9,5 +9,6 @@ export default async function bid({ tokenId, amount, gas, gasPrice }) {
     wallet: this.dfk.wallet,
     gas,
     gasPrice,
+    nonce,
   });
 }
