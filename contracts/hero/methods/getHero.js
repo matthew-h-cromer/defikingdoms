@@ -13,6 +13,18 @@ export default async function getHero({ tokenId }) {
 
   if (!rawHero) return {};
 
+  const statGenes = parseStatGenes(BigInt(rawHero[2][0]));
+
+  return {
+    generation: rawHero[2][4],
+    rarity: rawHero[2][2],
+    maxsummons: rawHero[1][5],
+    summons_remaining: rawHero[1][5] - rawHero[1][4],
+    mainclass: rawHero[2][8],
+    subclass: rawHero[2][9],
+    profession: statGenes.profession,
+  };
+
   return {
     summoningInfo: {
       summonedTime: rawHero[1][0],
