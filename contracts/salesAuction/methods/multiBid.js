@@ -3,6 +3,8 @@ export default async function multiBid({ tokenId, amount, gasPriceMultipliers = 
 
   let nonce = this.dfk.latestNonce;
 
+  if (nonce == null) return { bids: [], status: 'failed', error: 'no nonce available' };
+
   const promises = gasPriceMultipliers.map(multiplier => {
     const promise = new Promise(async (resolve, reject) => {
       const gasPrice = `${Math.round(minGasPrice * multiplier)}`;
