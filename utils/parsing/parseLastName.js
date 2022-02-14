@@ -2008,4 +2008,9 @@ const lastNames = [
   'd\xfagheli',
 ];
 
-export default id => lastNames[id] ?? id;
+export default id => {
+  let lastName = lastNames[id] ?? id;
+
+  if (lastName !== id) return lastName[0].toUpperCase() + lastName.slice(1);
+  else return lastName;
+};

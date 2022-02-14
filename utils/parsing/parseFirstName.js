@@ -4061,11 +4061,12 @@ const femaleFirstNames = [
 ];
 
 export default ({ gender, id }) => {
-  let firstName = 'unknown';
+  let firstName = id;
 
-  if (gender === 'male') firstName = maleFirstNames[id] ?? 'unknown';
+  if (gender === 'male') firstName = maleFirstNames[id] ?? id;
 
-  if (gender === 'female') firstName = femaleFirstNames[id] ?? 'unknown';
+  if (gender === 'female') firstName = femaleFirstNames[id] ?? id;
 
-  return firstName;
+  if (firstName !== id) return firstName[0].toUpperCase() + firstName.slice(1);
+  else return firstName;
 };

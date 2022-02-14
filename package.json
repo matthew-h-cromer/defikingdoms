@@ -5,7 +5,7 @@
     "node": "16.13.2"
   },
   "version": "1.0.0",
-  "description": "defikingdoms is a community project that allows you to easily interact with DefiKingdoms.",
+  "description": "allows easy interaction with DefiKingdoms",
   "main": "DFK.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
