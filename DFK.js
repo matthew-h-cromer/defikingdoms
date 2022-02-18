@@ -13,6 +13,7 @@ import totalSupply from './contracts/hero/methods/totalSupply.js';
 // jewel
 import JewelAbi from './contracts/jewel/JewelAbi.js';
 import approve from './contracts/jewel/methods/approve.js';
+import balanceOf from './contracts/jewel/methods/balanceOf.js';
 // salesAuction
 import SalesAuctionAbi from './contracts/salesAuction/SalesAuctionAbi.js';
 import bid from './contracts/salesAuction/methods/bid.js';
@@ -32,9 +33,6 @@ export default class DFK {
 
     this.wallet = this.getWallet(wallet);
 
-    if (this.options?.pollGas) this.pollGasPrice();
-    if (this.options?.pollNonce) this.pollNonce();
-
     this.hero = new Contract({
       address: '0x5f753dcdf9b1ad9aabc1346614d1f4746fd6ce5c',
       abi: HeroAbi,
@@ -44,7 +42,7 @@ export default class DFK {
     this.jewel = new Contract({
       address: '0x72cb10c6bfa5624dd07ef608027e366bd690048f',
       abi: JewelAbi,
-      methods: [approve],
+      methods: [approve, balanceOf],
       dfk: this,
     });
     this.salesAuction = new Contract({
@@ -53,6 +51,30 @@ export default class DFK {
       methods: [bid, multiBid],
       dfk: this,
     });
+
+    if (this.options?.pollGasPrice) {
+      this.getGasPrice().then(gasPrice => (this.latestGasPrice = gasPrice));
+
+      setInterval(async () => {
+        this.latestGasPrice = await this.getGasPrice();
+      }, 60000);
+    }
+
+    if (this.options?.pollNonce) {
+      this.getNonce().then(nonce => (this.nonce = nonce));
+
+      setInterval(async () => {
+        this.nonce = await this.getNonce();
+      }, 30000);
+    }
+
+    if (this.options?.pollJEWELBalance) {
+      this.getJEWELBalance().then(balance => (this.JEWELBalance = balance));
+
+      setInterval(async () => {
+        this.JEWELBalance = await this.getJEWELBalance();
+      }, 10000);
+    }
 
     this.abiDecoder = abiDecoder;
 
@@ -88,16 +110,16 @@ export default class DFK {
     }
   }
 
-  async pollGasPrice() {
-    this.latestGasPrice = await this.web3.eth.getGasPrice();
-
-    setTimeout(() => this.pollGasPrice(), 60000);
+  async getGasPrice() {
+    return await this.web3.eth.getGasPrice();
   }
 
-  async pollNonce() {
-    this.latestNonce = await this.web3.eth.getTransactionCount(this.wallet.address);
+  async getNonce() {
+    return await this.web3.eth.getTransactionCount(this.wallet.address);
+  }
 
-    setTimeout(() => this.pollNonce(), 10000);
+  async getJEWELBalance() {
+    return await this.jewel.balanceOf(this.wallet.address);
   }
 
   getWallet = getWallet;
