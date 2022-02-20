@@ -61,10 +61,10 @@ export default class DFK {
     }
 
     if (this.options?.pollNonce) {
-      this.getNonce().then(nonce => (this.nonce = nonce));
+      this.getNonce().then(nonce => (this.latestNonce = nonce));
 
       setInterval(async () => {
-        this.nonce = await this.getNonce();
+        this.latestNonce = await this.getNonce();
       }, 30000);
     }
 
