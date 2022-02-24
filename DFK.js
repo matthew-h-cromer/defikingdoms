@@ -65,7 +65,7 @@ export default class DFK {
 
       setInterval(async () => {
         this.latestNonce = await this.getNonce();
-      }, 30000);
+      }, 10000);
     }
 
     if (this.options?.pollJEWELBalance) {
