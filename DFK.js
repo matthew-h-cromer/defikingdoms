@@ -60,7 +60,6 @@ export default class DFK {
       }, 60000);
     }
 
-    this.latestNonce = null;
     if (this.options?.pollNonce) {
       this.getNonce().then(nonce => (this.latestNonce = nonce));
 
