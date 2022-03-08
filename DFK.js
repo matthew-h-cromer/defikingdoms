@@ -85,6 +85,12 @@ export default class DFK {
     const newProvider = () =>
       providerType === 'websocket'
         ? new Web3.providers.WebsocketProvider(providerURL ?? 'wss://ws.s0.t.hmny.io/', {
+            clientConfig: {
+              maxReceivedFrameSize: 100000000, // bytes - default: 1MiB
+              maxReceivedMessageSize: 100000000, // bytes - default: 8MiB
+              keepalive: true,
+              keepaliveInterval: 60000, // ms
+            },
             reconnect: {
               auto: true,
               delay: 5000, // ms
