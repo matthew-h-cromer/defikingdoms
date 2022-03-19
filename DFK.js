@@ -18,6 +18,9 @@ import balanceOf from './contracts/jewel/methods/balanceOf.js';
 import SalesAuctionAbi from './contracts/salesAuction/SalesAuctionAbi.js';
 import bid from './contracts/salesAuction/methods/bid.js';
 import multiBid from './contracts/salesAuction/methods/multiBid.js';
+// perilous journey
+import PerilousJourneyAbi from './contracts/perilousJourney/PerilousJourneyAbi.js';
+import getHeroSubmission from './contracts/perilousJourney/methods/getHeroSubmission.js';
 
 export default class DFK {
   constructor(params) {
@@ -49,6 +52,12 @@ export default class DFK {
       address: '0x13a65B9F8039E2c032Bc022171Dc05B30c3f2892',
       abi: SalesAuctionAbi,
       methods: [bid, multiBid],
+      dfk: this,
+    });
+    this.perilousJourney = new Contract({
+      address: '0xe92db3bb6e4b21a8b9123e7fdadd887133c64bb7',
+      abi: PerilousJourneyAbi,
+      methods: [getHeroSubmission],
       dfk: this,
     });
 
