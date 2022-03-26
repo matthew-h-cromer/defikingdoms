@@ -38,8 +38,6 @@ export default async function getHero({ tokenId }) {
     lastname: rawHero[2][6],
     lastname_string: parseLastName(rawHero[2][6]),
     shinystyle: rawHero[2][7],
-    mainclass: rawHero[2][8],
-    subclass: rawHero[2][9],
 
     // state
     staminafullat: rawHero[3][0],
@@ -53,16 +51,58 @@ export default async function getHero({ tokenId }) {
 
     // stat genes
     statgenes: rawHero[2][0],
+    // dominant
+    mainclass: statGenes.mainClass,
+    subclass: statGenes.subClass,
     profession: statGenes.profession,
-    passive1: statGenes.passive1, // TODO: "Basic" syntax
-    passive2: statGenes.passive2, // TODO: "Basic" syntax
-    active1: statGenes.active1, // TODO: "Basic" syntax
-    active2: statGenes.active2, // TODO: "Basic" syntax
+    passive1: statGenes.passive1,
+    passive2: statGenes.passive2,
+    active1: statGenes.active1,
+    active2: statGenes.active2,
     statboost1: statGenes.statBoost1,
     statboost2: statGenes.statBoost2,
     statsunknown1: statGenes.statsUnknown1,
     statsunknown2: statGenes.statsUnknown2,
     element: statGenes.element,
+    // r1
+    r1_mainclass: statGenes.r1_mainClass,
+    r1_subclass: statGenes.r1_subClass,
+    r1_profession: statGenes.r1_profession,
+    r1_passive1: statGenes.r1_passive1,
+    r1_passive2: statGenes.r1_passive2,
+    r1_active1: statGenes.r1_active1,
+    r1_active2: statGenes.r1_active2,
+    r1_statboost1: statGenes.r1_statBoost1,
+    r1_statboost2: statGenes.r1_statBoost2,
+    r1_statsunknown1: statGenes.r1_statsUnknown1,
+    r1_statsunknown2: statGenes.r1_statsUnknown2,
+    r1_element: statGenes.r1_element,
+    // r2
+    r2_mainclass: statGenes.r2_mainClass,
+    r2_subclass: statGenes.r2_subClass,
+    r2_profession: statGenes.r2_profession,
+    r2_passive1: statGenes.r2_passive1,
+    r2_passive2: statGenes.r2_passive2,
+    r2_active1: statGenes.r2_active1,
+    r2_active2: statGenes.r2_active2,
+    r2_statboost1: statGenes.r2_statBoost1,
+    r2_statboost2: statGenes.r2_statBoost2,
+    r2_statsunknown1: statGenes.r2_statsUnknown1,
+    r2_statsunknown2: statGenes.r2_statsUnknown2,
+    r2_element: statGenes.r2_element,
+    // r3
+    r3_mainclass: statGenes.r3_mainClass,
+    r3_subclass: statGenes.r3_subClass,
+    r3_profession: statGenes.r3_profession,
+    r3_passive1: statGenes.r3_passive1,
+    r3_passive2: statGenes.r3_passive2,
+    r3_active1: statGenes.r3_active1,
+    r3_active2: statGenes.r3_active2,
+    r3_statboost1: statGenes.r3_statBoost1,
+    r3_statboost2: statGenes.r3_statBoost2,
+    r3_statsunknown1: statGenes.r3_statsUnknown1,
+    r3_statsunknown2: statGenes.r3_statsUnknown2,
+    r3_element: statGenes.r3_element,
 
     // stats
     strength: rawHero[4][0],
