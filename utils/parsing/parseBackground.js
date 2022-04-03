@@ -1,12 +1,3 @@
-const backgrounds = {
-  0: 'desert',
-  2: 'forest',
-  4: 'plains',
-  6: 'island',
-  8: 'swamp',
-  10: 'mountains',
-  12: 'city',
-  14: 'arctic',
-};
+import backgrounds from '../../constants/backgrounds';
 
 export default id => backgrounds[id] ?? id;

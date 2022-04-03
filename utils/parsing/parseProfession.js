@@ -1,8 +1,3 @@
-const professions = {
-  0: 'mining',
-  2: 'gardening',
-  4: 'fishing',
-  6: 'foraging',
-};
+import professions from '../../constants/professions';
 
 export default id => professions[id] ?? id;
