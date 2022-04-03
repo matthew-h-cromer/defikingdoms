@@ -2,6 +2,7 @@ import parseStatGenes from './parseStatGenes.js';
 import parseVisualGenes from './parseVisualGenes.js';
 import parseFirstName from './parseFirstName.js';
 import parseLastName from './parseLastName.js';
+import getPjStatus from './getPjStatus.js';
 
 export default function (rawHero) {
   const statGenes = parseStatGenes(BigInt(rawHero[2][0]));
@@ -31,6 +32,7 @@ export default function (rawHero) {
     lastname: rawHero[2][6],
     lastname_string: parseLastName(rawHero[2][6]),
     shinystyle: rawHero[2][7],
+    pjStatus: getPjStatus(tokenId),
 
     // state
     staminafullat: rawHero[3][0],
