@@ -1,4 +1,4 @@
-export const elements = {
+export default {
   0: 'fire',
   2: 'water',
   4: 'earth',

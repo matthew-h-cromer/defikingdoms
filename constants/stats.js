@@ -1,4 +1,4 @@
-export const stats = {
+export default {
   0: 'STR',
   2: 'AGI',
   4: 'INT',

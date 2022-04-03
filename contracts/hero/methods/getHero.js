@@ -8,7 +8,7 @@ export default async function getHero({ tokenId }) {
 
   if (!rawHero) return {};
 
-  const hero = parseHero(rawHero);
+  const hero = parseHero({ tokenId, rawHero });
 
   return hero;
 }

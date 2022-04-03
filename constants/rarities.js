@@ -1,4 +1,4 @@
-export const rarities = {
+export default {
   0: 'common',
   1: 'uncommon',
   2: 'rare',

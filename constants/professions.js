@@ -1,4 +1,4 @@
-export const professions = {
+export default {
   0: 'mining',
   2: 'gardening',
   4: 'fishing',

@@ -1,4 +1,4 @@
-export const pjStatuses = {
+export default {
   21: 'SURVIVED',
   23: 'SURVIVED',
   24: 'SURVIVED',

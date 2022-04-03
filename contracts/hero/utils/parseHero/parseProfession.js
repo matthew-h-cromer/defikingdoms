@@ -1,3 +1,3 @@
-import professions from '../../constants/professions.js';
+import professions from '../../../../constants/professions.js';
 
 export default id => professions[id] ?? id;

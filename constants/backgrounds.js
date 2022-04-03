@@ -1,4 +1,4 @@
-export const backgrounds = {
+export default {
   0: 'desert',
   2: 'forest',
   4: 'plains',
