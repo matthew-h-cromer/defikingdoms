@@ -1,4 +1,4 @@
-import lastNames from '../../constants/lastNames';
+import lastNames from '../../constants/lastNames.js';
 
 export default id => {
   let lastName = lastNames[id] ?? id;

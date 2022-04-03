@@ -1,5 +1,5 @@
-import maleFirstNames from '../../constants/maleFirstNames';
-import femaleFirstNames from '../../constants/femaleFirstNames';
+import maleFirstNames from '../../constants/maleFirstNames.js';
+import femaleFirstNames from '../../constants/femaleFirstNames.js';
 
 export default ({ gender, id }) => {
   let firstName = id;
