@@ -16,11 +16,14 @@ import approve from './contracts/jewel/methods/approve.js';
 import balanceOf from './contracts/jewel/methods/balanceOf.js';
 // salesAuction
 import SalesAuctionAbi from './contracts/salesAuction/SalesAuctionAbi.js';
-import bid from './contracts/salesAuction/methods/bid.js';
+import bid_salesAuction from './contracts/salesAuction/methods/bid.js';
 import multiBid from './contracts/salesAuction/methods/multiBid.js';
 // perilous journey
 import PerilousJourneyAbi from './contracts/perilousJourney/PerilousJourneyAbi.js';
 import getHeroSubmission from './contracts/perilousJourney/methods/getHeroSubmission.js';
+// buyOrder
+import BuyOrderAbi from './contracts/buyOrder/BuyOrderAbi.js';
+import bid_buyOrder from './contracts/buyOrder/methods/bid.js';
 
 export default class DFK {
   constructor(params) {
@@ -51,13 +54,19 @@ export default class DFK {
     this.salesAuction = new Contract({
       address: '0x13a65B9F8039E2c032Bc022171Dc05B30c3f2892',
       abi: SalesAuctionAbi,
-      methods: [bid, multiBid],
+      methods: [bid_salesAuction, multiBid],
       dfk: this,
     });
     this.perilousJourney = new Contract({
       address: '0xe92db3bb6e4b21a8b9123e7fdadd887133c64bb7',
       abi: PerilousJourneyAbi,
       methods: [getHeroSubmission],
+      dfk: this,
+    });
+    this.buyOrder = new Contract({
+      address: '',
+      abi: BuyOrderAbi,
+      methods: [bid_buyOrder],
       dfk: this,
     });
 
