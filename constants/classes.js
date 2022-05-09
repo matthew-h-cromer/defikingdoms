@@ -8,10 +8,10 @@ export default {
   6: 'monk',
   7: 'pirate',
   16: 'paladin',
-  17: 'darkknight',
+  17: 'darkKnight',
   18: 'summoner',
   19: 'ninja',
   24: 'dragoon',
   25: 'sage',
-  28: 'dreadknight',
+  28: 'dreadKnight',
 };

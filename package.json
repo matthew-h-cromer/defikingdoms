@@ -6,7 +6,7 @@
   },
   "version": "1.0.0",
   "description": "allows easy interaction with DefiKingdoms",
-  "main": "DFK.js",
+  "main": "index.js",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
