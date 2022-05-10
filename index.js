@@ -10,6 +10,8 @@ import pjStatuses from './constants/pjStatuses';
 import professions from './constants/professions';
 import rarities from './constants/rarities';
 import stats from './constants/stats';
+// abi
+import abi from './abi/index';
 
 export default {
   DFK,
@@ -23,4 +25,5 @@ export default {
   professions,
   rarities,
   stats,
+  abi,
 };
