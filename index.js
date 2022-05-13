@@ -1,17 +1,17 @@
-import _DFK from './DFK';
+import _DFK from './DFK.js';
 // constants
-import _backgrounds from './constants/backgrounds';
-import _classes from './constants/classes';
-import _elements from './constants/elements';
-import _firstNames from './constants/firstNames';
-import _lastNames from './constants/lastNames';
-import _pjStatuses from './constants/pjStatuses';
-import _professions from './constants/professions';
-import _rarities from './constants/rarities';
-import _stats from './constants/stats';
-import _contractAddresses from './constants/contractAddresses';
+import _backgrounds from './constants/backgrounds.js';
+import _classes from './constants/classes.js';
+import _elements from './constants/elements.js';
+import _firstNames from './constants/firstNames.js';
+import _lastNames from './constants/lastNames.js';
+import _pjStatuses from './constants/pjStatuses.js';
+import _professions from './constants/professions.js';
+import _rarities from './constants/rarities.js';
+import _stats from './constants/stats.js';
+import _contractAddresses from './constants/contractAddresses.js';
 // abi
-import _abi from './abi/index';
+import _abi from './abi/index.js';
 
 export const DFK = _DFK;
 export const backgrounds = _backgrounds;
