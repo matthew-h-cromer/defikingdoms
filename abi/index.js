@@ -1,6 +1,6 @@
-import Hero from './Hero';
-import PerilousJourney from './PerilousJourney';
-import SalesAuction from './SalesAuction';
+import Hero from './Hero.js';
+import PerilousJourney from './PerilousJourney.js';
+import SalesAuction from './SalesAuction.js';
 
 export default {
   hero: Hero,
