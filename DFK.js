@@ -19,13 +19,12 @@ export default class DFK {
     this.heroContract = new this.web3.eth.Contract(Hero, contractAddresses.hero);
 
     // methods
-    //   hero
-    this.getHero = (tokenId, options) => getHero(this.heroContract, tokenId, options);
+    this.getHero = getHero.bind(this);
   }
 
   initWeb3({ providerURL }) {
     this.web3 = new Web3(
-      new Web3.providers.HttpProvider(providerURL ?? 'https://rpc.s0.t.hmny.io')
+      new Web3.providers.HttpProvider(providerURL ?? 'https://a.api.s0.t.hmny.io')
     );
 
     // return revert strings when a transaction fails
