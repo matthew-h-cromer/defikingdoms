@@ -16,7 +16,7 @@ export default function (rawHero) {
     assistantId: rawHero[1][3],
     summons: rawHero[1][4],
     maxSummons: rawHero[1][5],
-    summonsRemaining: +rawHero[1][5] - +rawHero[1][4],
+    summonsRemaining: String(+rawHero[1][5] - +rawHero[1][4]),
 
     // stat genes
     statGenes: rawHero[2][0],
