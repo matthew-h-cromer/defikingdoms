@@ -8,7 +8,7 @@ test('getHero 4724', async () => {
   // check immutable hero attrs
   expect(hero).toMatchObject({
     tokenId: '4724',
-    summonedTime: '1633731606',
+    summonedTime: new Date(1633731606 * 1000),
     // nextSummonTime: '1637095885',
     summonerId: '842',
     assistantId: '1226',
@@ -141,7 +141,7 @@ test('getHero 5917', async () => {
   // check immutable hero attrs
   expect(hero).toMatchObject({
     tokenId: '5917',
-    summonedTime: '1633909941',
+    summonedTime: new Date(1633909941 * 1000),
     // nextSummonTime: '1644021886',
     summonerId: '4722',
     assistantId: '4724',

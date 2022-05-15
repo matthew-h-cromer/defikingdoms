@@ -2,6 +2,7 @@ import parseStatGenes from './parseStatGenes.js';
 import parseVisualGenes from './parseVisualGenes.js';
 import parseFirstName from './parseFirstName.js';
 import parseLastName from './parseLastName.js';
+import date from './dateFromUnixSeconds.js';
 
 export default function (rawHero) {
   const statGenes = parseStatGenes(BigInt(rawHero[2][0]));
@@ -9,8 +10,8 @@ export default function (rawHero) {
 
   return {
     // summoning
-    summonedTime: rawHero[1][0],
-    nextSummonTime: rawHero[1][1],
+    summonedTime: date(rawHero[1][0]),
+    nextSummonTime: date(rawHero[1][1]),
     summonerId: rawHero[1][2],
     assistantId: rawHero[1][3],
     summons: rawHero[1][4],
@@ -39,9 +40,9 @@ export default function (rawHero) {
     shinyStyle: rawHero[2][7],
 
     // state
-    staminaFullAt: rawHero[3][0],
-    hpFullAt: rawHero[3][1],
-    mpFullAt: rawHero[3][2],
+    staminaFullAt: date(rawHero[3][0]),
+    hpFullAt: date(rawHero[3][1]),
+    mpFullAt: date(rawHero[3][2]),
     level: rawHero[3][3],
     xp: rawHero[3][4],
     currentQuest: rawHero[3][5],
