@@ -1,0 +1,17 @@
+export default {
+  0: 'basic',
+  1: 'basic',
+  2: 'basic',
+  3: 'basic',
+  4: 'basic',
+  5: 'basic',
+  6: 'basic',
+  7: 'basic',
+  16: 'advanced',
+  17: 'advanced',
+  18: 'advanced',
+  19: 'advanced',
+  24: 'elite',
+  25: 'elite',
+  28: 'exalted',
+};
