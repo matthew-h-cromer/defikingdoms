@@ -1,4 +1,6 @@
 import DFK from './DFK.js';
+// parsing
+import parseHero from './utils/parseHero/parseHero.js';
 // constants
 import abilities from './constants/abilities.js';
 import appendageColors from './constants/appendageColors.js';
@@ -20,6 +22,26 @@ import contractAddresses from './constants/contractAddresses.js';
 // abi
 import abi from './abi/index.js';
 
+const parser = {
+  hero: parseHero,
+  abilities: id => abilities[id] ?? id,
+  appendageColors: id => appendageColors[id] ?? id,
+  backgrounds: id => backgrounds[id] ?? id,
+  classes: id => classes[id] ?? id,
+  classRanks: id => classRanks[id] ?? id,
+  contractAddresses: id => contractAddresses[id] ?? id,
+  elements: id => elements[id] ?? id,
+  eyeColors: id => eyeColors[id] ?? id,
+  femaleFirstNames: id => femaleFirstNames[id] ?? id,
+  hairColors: id => hairColors[id] ?? id,
+  lastNames: id => lastNames[id] ?? id,
+  maleFirstNames: id => maleFirstNames[id] ?? id,
+  professions: id => professions[id] ?? id,
+  rarities: id => rarities[id] ?? id,
+  skinColors: id => skinColors[id] ?? id,
+  stats: id => stats[id] ?? id,
+};
+
 export {
   DFK,
   abilities,
@@ -40,4 +62,5 @@ export {
   stats,
   contractAddresses,
   abi,
+  parser,
 };
