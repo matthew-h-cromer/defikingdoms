@@ -11,6 +11,7 @@ import elements from './constants/elements.js';
 import eyeColors from './constants/eyeColors.js';
 import maleFirstNames from './constants/maleFirstNames.js';
 import femaleFirstNames from './constants/femaleFirstNames.js';
+import genders from './constants/genders.js';
 import hairColors from './constants/hairColors.js';
 import lastNames from './constants/lastNames.js';
 import pjStatuses from './constants/pjStatuses.js';
@@ -33,6 +34,7 @@ const parser = {
   elements: id => elements[id] ?? id,
   eyeColors: id => eyeColors[id] ?? id,
   femaleFirstNames: id => femaleFirstNames[id] ?? id,
+  genders: id => genders[id] ?? id,
   hairColors: id => hairColors[id] ?? id,
   lastNames: id => lastNames[id] ?? id,
   maleFirstNames: id => maleFirstNames[id] ?? id,
