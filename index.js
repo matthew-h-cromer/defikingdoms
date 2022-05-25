@@ -55,6 +55,7 @@ export {
   eyeColors,
   maleFirstNames,
   femaleFirstNames,
+  genders,
   hairColors,
   lastNames,
   pjStatuses,
