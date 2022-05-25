@@ -3,10 +3,12 @@ import Web3 from 'web3';
 import contractAddresses from './constants/contractAddresses.js';
 // abi
 import Hero from './abi/Hero.js';
+import SalesAuction from './abi/SalesAuction.js';
 // methods
 import getHero from './methods/hero/getHero.js';
 
 export default class DFK {
+  /* prettier-ignore */
   constructor(params) {
     const { options } = params ?? {};
 
@@ -16,7 +18,14 @@ export default class DFK {
     });
 
     // contracts
-    this.heroContract = new this.web3.eth.Contract(Hero, contractAddresses.hero);
+    this.heroContract = new this.web3.eth.Contract(
+      Hero, 
+      contractAddresses.hero
+    );
+    this.salesAuctionContract = new this.web3.eth.Contract(
+      SalesAuction,
+      contractAddresses.salesAuction
+    );
 
     // methods
     this.getHero = getHero.bind(this);
