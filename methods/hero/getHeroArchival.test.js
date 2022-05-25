@@ -265,3 +265,21 @@ test('getHero (archival) 5917', async () => {
     backAppendageColor: '4',
   });
 });
+
+test('pj statuses before claim', async () => {
+  const dfk = new DFK();
+
+  let hero;
+
+  hero = await dfk.getHero('102627', { blockNumber: 23145237 });
+  expect(hero.pjStatus).toBe(undefined);
+
+  hero = await dfk.getHero('44292', { blockNumber: 23145237 });
+  expect(hero.pjStatus).toBe(undefined);
+
+  hero = await dfk.getHero('44299', { blockNumber: 23145237 });
+  expect(hero.pjStatus).toBe(undefined);
+
+  hero = await dfk.getHero('51956', { blockNumber: 23145237 });
+  expect(hero.pjStatus).toBe(undefined);
+});

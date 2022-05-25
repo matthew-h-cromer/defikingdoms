@@ -265,3 +265,21 @@ test('getHero 5917', async () => {
     backAppendageColor: '4',
   });
 });
+
+test('pj statuses', async () => {
+  const dfk = new DFK();
+
+  let hero;
+
+  hero = await dfk.getHero('102627');
+  expect(hero.pjStatus).toBe(null);
+
+  hero = await dfk.getHero('44292');
+  expect(hero.pjStatus).toBe('survived');
+
+  hero = await dfk.getHero('44299');
+  expect(hero.pjStatus).toBe('died');
+
+  hero = await dfk.getHero('51956');
+  expect(hero.pjStatus).toBe('onJourney');
+});
