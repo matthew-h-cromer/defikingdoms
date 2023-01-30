@@ -12,6 +12,8 @@ export default class DFK {
   constructor(params) {
     const { options } = params ?? {};
 
+    // options
+    this.realm = options?.realm ?? 'crystalvale';
     // initialize web3
     this.initWeb3({
       providerURL: options?.web3?.providerURL,
@@ -20,11 +22,11 @@ export default class DFK {
     // contracts
     this.heroContract = new this.web3.eth.Contract(
       Hero, 
-      contractAddresses.hero
+      contractAddresses[this.realm].hero
     );
     this.salesAuctionContract = new this.web3.eth.Contract(
       SalesAuction,
-      contractAddresses.salesAuction
+      contractAddresses[this.realm].salesAuction
     );
 
     // methods
