@@ -14,10 +14,10 @@ export default class DFK {
 
     // options
     this.realm = options?.realm ?? 'crystalvale';
+    this.providerURL = options?.web3?.providerURL ?? 'https://subnets.avax.network/defi-kingdoms/dfk-chain/rpc';
+
     // initialize web3
-    this.initWeb3({
-      providerURL: options?.web3?.providerURL,
-    });
+    this.initWeb3();
 
     // contracts
     this.heroContract = new this.web3.eth.Contract(
@@ -33,10 +33,8 @@ export default class DFK {
     this.getHero = getHero.bind(this);
   }
 
-  initWeb3({ providerURL }) {
-    this.web3 = new Web3(
-      new Web3.providers.HttpProvider(providerURL ?? 'https://a.api.s0.t.hmny.io')
-    );
+  initWeb3() {
+    this.web3 = new Web3(new Web3.providers.HttpProvider(this.providerURL));
 
     // return revert strings when a transaction fails
     this.web3.eth.handleRevert = true;
