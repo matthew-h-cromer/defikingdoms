@@ -4,7 +4,6 @@ import contractAddresses from './constants/contractAddresses.js';
 // abi
 import Hero from './abi/Hero.js';
 import SalesAuction from './abi/SalesAuction.js';
-import PerilousJourney from './abi/PerilousJourney.js';
 // methods
 import getHero from './methods/hero/getHero.js';
 
@@ -26,10 +25,6 @@ export default class DFK {
     this.salesAuctionContract = new this.web3.eth.Contract(
       SalesAuction,
       contractAddresses.salesAuction
-    );
-    this.perilousJourneyContract = new this.web3.eth.Contract(
-      PerilousJourney,
-      contractAddresses.perilousJourney
     );
 
     // methods
