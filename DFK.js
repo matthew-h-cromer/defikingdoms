@@ -14,7 +14,11 @@ export default class DFK {
 
     // options
     this.realm = options?.realm ?? 'crystalvale';
-    this.providerURL = options?.web3?.providerURL ?? 'https://subnets.avax.network/defi-kingdoms/dfk-chain/rpc';
+    this.providerURL =
+      options?.web3?.providerURL ?? 
+      this.realm == 'crystalvale' ? 'https://subnets.avax.network/defi-kingdoms/dfk-chain/rpc'
+      : this.realm == 'serendale' ? 'https://cypress.fautor.app/archive'
+      : null;
 
     // initialize web3
     this.initWeb3();
