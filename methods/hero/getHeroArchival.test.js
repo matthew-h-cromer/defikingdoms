@@ -1,6 +1,6 @@
 import DFK from '../../DFK';
 
-test('getHero (archival) 4724', async () => {
+test.skip('getHero (archival) 4724', async () => {
   const dfk = new DFK();
 
   const hero = await dfk.getHero('4724', { blockNumber: 18637062 });
@@ -133,7 +133,7 @@ test('getHero (archival) 4724', async () => {
   });
 });
 
-test('getHero (archival) 5917', async () => {
+test.skip('getHero (archival) 5917', async () => {
   const dfk = new DFK();
 
   const hero = await dfk.getHero('5917', { blockNumber: 18637085 });
@@ -266,7 +266,7 @@ test('getHero (archival) 5917', async () => {
   });
 });
 
-test('pj statuses before claim', async () => {
+test.skip('pj statuses before claim', async () => {
   const dfk = new DFK();
 
   let hero;

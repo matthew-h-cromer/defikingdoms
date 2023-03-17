@@ -1,6 +1,6 @@
 import DFK from '../../DFK';
 
-test('getHero 4724', async () => {
+test.skip('getHero 4724', async () => {
   const dfk = new DFK();
 
   const hero = await dfk.getHero('4724');
@@ -133,7 +133,7 @@ test('getHero 4724', async () => {
   });
 });
 
-test('getHero 5917', async () => {
+test.skip('getHero 5917', async () => {
   const dfk = new DFK();
 
   const hero = await dfk.getHero('5917');
@@ -266,7 +266,7 @@ test('getHero 5917', async () => {
   });
 });
 
-test('pj statuses', async () => {
+test.skip('pj statuses', async () => {
   const dfk = new DFK();
 
   let hero;

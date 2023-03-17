@@ -4,8 +4,10 @@ import contractAddresses from './constants/contractAddresses.js';
 // abi
 import Hero from './abi/Hero.js';
 import SalesAuction from './abi/SalesAuction.js';
+import UniswapV2Router from './abi/UniswapV2Router.js';
 // methods
 import getHero from './methods/hero/getHero.js';
+import getExchangeRate from './methods/hero/getExchangeRate.js';
 
 export default class DFK {
   /* prettier-ignore */
@@ -32,9 +34,14 @@ export default class DFK {
       SalesAuction,
       contractAddresses[this.realm].salesAuction
     );
+    this.uniswapV2RouterContract = new this.web3.eth.Contract(
+      UniswapV2Router,
+      contractAddresses[this.realm].uniswapV2Router
+    );
 
     // methods
     this.getHero = getHero.bind(this);
+    this.getExchangeRate = getExchangeRate.bind(this);
   }
 
   initWeb3() {

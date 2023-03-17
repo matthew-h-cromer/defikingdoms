@@ -25,6 +25,7 @@
     "web3": "^1.7.0"
   },
   "devDependencies": {
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "node-fetch": "^3.3.1"
   }
 }
