@@ -5,20 +5,6 @@ import fetch from 'node-fetch';
 // - CMC API Page: https://coinmarketcap.com/converter/
 // - CMC API: https://api.coinmarketcap.com/data-api/v3/tools/price-conversion?amount=1&convert_id=12319&id=23637
 
-// HELPER FUNCTIONS
-const getCMCRate = async ({ convert_id, id }) => {
-  const response = await fetch(
-    `https://api.coinmarketcap.com/data-api/v3/tools/price-conversion?amount=1&convert_id=${convert_id}&id=${id}`
-  );
-  const result = await response.json();
-  const cmcRate = result.data.quote[0].price;
-  return cmcRate;
-};
-
-function percentDifference(a, b) {
-  return (Math.abs(a - b) / ((a + b) / 2)) * 100;
-}
-
 // TESTS
 test('serendale JADE->JEWEL past 30 days', async () => {
   // get DFK exchange rate
@@ -65,3 +51,31 @@ test('crystalvale CRYSTAL->JEWEL past 30 days', async () => {
 
   console.log('crystalvale CRYSTAL->JEWEL past 30 days', past30DaysPrices);
 }, 20000);
+
+test('rate before pair exists returns null', async () => {
+  const dfk = new DFK({ options: { realm: 'crystalvale' } });
+
+  const dfkRate = await dfk.getExchangeRate(
+    {
+      inputToken: 'CRYSTAL',
+      outputToken: 'JEWEL',
+    },
+    { blockNumber: 100 }
+  );
+
+  expect(dfkRate).toBeNull();
+});
+
+test('rate after pair exists to be non null', async () => {
+  const dfk = new DFK({ options: { realm: 'crystalvale' } });
+
+  const dfkRate = await dfk.getExchangeRate(
+    {
+      inputToken: 'CRYSTAL',
+      outputToken: 'JEWEL',
+    },
+    { blockNumber: 500 }
+  );
+
+  expect(dfkRate).not.toBeNull();
+});
