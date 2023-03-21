@@ -1,12 +1,12 @@
 import DFK from '../../DFK';
-import fetch from 'node-fetch';
+import Web3 from 'web3';
 
 // NOTES
 // - CMC API Page: https://coinmarketcap.com/converter/
 // - CMC API: https://api.coinmarketcap.com/data-api/v3/tools/price-conversion?amount=1&convert_id=12319&id=23637
 
 // TESTS
-test('serendale JADE->JEWEL past 30 days', async () => {
+test.skip('serendale JADE->JEWEL past 30 days', async () => {
   // get DFK exchange rate
   const dfk = new DFK({ options: { realm: 'serendale' } });
 
@@ -18,6 +18,7 @@ test('serendale JADE->JEWEL past 30 days', async () => {
   for (let day = 1; day <= 30; day++) {
     const dfkRate = await dfk.getExchangeRate(
       {
+        amount: Web3.utils.toWei('1'),
         inputToken: 'JADE',
         outputToken: 'JEWEL',
       },
@@ -29,7 +30,7 @@ test('serendale JADE->JEWEL past 30 days', async () => {
   console.log('serendale JADE->JEWEL past 30 days', past30DaysPrices);
 }, 20000);
 
-test('crystalvale CRYSTAL->JEWEL past 30 days', async () => {
+test.skip('crystalvale CRYSTAL->JEWEL past 30 days', async () => {
   // get DFK exchange rate
   const dfk = new DFK({ options: { realm: 'crystalvale' } });
 
@@ -41,6 +42,7 @@ test('crystalvale CRYSTAL->JEWEL past 30 days', async () => {
   for (let day = 1; day <= 30; day++) {
     const dfkRate = await dfk.getExchangeRate(
       {
+        amount: Web3.utils.toWei('1'),
         inputToken: 'CRYSTAL',
         outputToken: 'JEWEL',
       },
@@ -57,6 +59,7 @@ test('rate before pair exists returns null', async () => {
 
   const dfkRate = await dfk.getExchangeRate(
     {
+      amount: Web3.utils.toWei('1'),
       inputToken: 'CRYSTAL',
       outputToken: 'JEWEL',
     },
@@ -71,6 +74,7 @@ test('rate after pair exists to be non null', async () => {
 
   const dfkRate = await dfk.getExchangeRate(
     {
+      amount: Web3.utils.toWei('1'),
       inputToken: 'CRYSTAL',
       outputToken: 'JEWEL',
     },

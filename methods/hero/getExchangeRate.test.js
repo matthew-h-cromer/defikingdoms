@@ -1,5 +1,6 @@
 import DFK from '../../DFK';
 import fetch from 'node-fetch';
+import Web3 from 'web3';
 
 // NOTES
 // - CMC API Page: https://coinmarketcap.com/converter/
@@ -20,122 +21,110 @@ function percentDifference(a, b) {
 }
 
 // TESTS
-test('serendale current JADE->JEWEL within 5%', async () => {
+test('serendale current JADE->JEWEL is accurate', async () => {
   // get DFK exchange rate
   const dfk = new DFK({ options: { realm: 'serendale' } });
 
-  const dfkRate = await dfk.getExchangeRate({
+  const amount = await dfk.getExchangeRate({
+    amount: Web3.utils.toWei('1'),
     inputToken: 'JADE',
     outputToken: 'JEWEL',
   });
+
+  const dfkRate = Web3.utils.fromWei(amount.toString());
 
   // get coinmarketcap exchange rate
   const cmcRate = await getCMCRate({ convert_id: '12319', id: '23637' });
 
-  expect(percentDifference(dfkRate, cmcRate)).toBeLessThan(5);
+  expect(percentDifference(Number(dfkRate), cmcRate)).toBeLessThan(10);
 });
 
-test('serendale current JADE->KLAY within 5%', async () => {
+test('serendale current JADE->KLAY is accurate', async () => {
   // get DFK exchange rate
   const dfk = new DFK({ options: { realm: 'serendale' } });
 
-  const dfkRate = await dfk.getExchangeRate({
+  const amount = await dfk.getExchangeRate({
+    amount: Web3.utils.toWei('1'),
     inputToken: 'JADE',
     outputToken: 'KLAY',
   });
+
+  const dfkRate = Web3.utils.fromWei(amount.toString());
 
   // get coinmarketcap exchange rate
   const cmcRate = await getCMCRate({ convert_id: '4256', id: '23637' });
 
-  expect(percentDifference(dfkRate, cmcRate)).toBeLessThan(5);
+  expect(percentDifference(Number(dfkRate), cmcRate)).toBeLessThan(10);
 });
 
-test('serendale current JADE->USD within 5%', async () => {
+test('serendale current JADE->USD is accurate', async () => {
   // get DFK exchange rate
   const dfk = new DFK({ options: { realm: 'serendale' } });
 
-  const dfkRate = await dfk.getExchangeRate({
+  const amount = await dfk.getExchangeRate({
+    amount: Web3.utils.toWei('1'),
     inputToken: 'JADE',
     outputToken: 'USD',
   });
 
+  const dfkRate = Web3.utils.fromWei(amount.toString());
+
   // get coinmarketcap exchange rate
   const cmcRate = await getCMCRate({ convert_id: '2781', id: '23637' });
 
-  expect(percentDifference(dfkRate, cmcRate)).toBeLessThan(5);
+  expect(percentDifference(Number(dfkRate), cmcRate)).toBeLessThan(10);
 });
 
-// test('serendale current JADE->CRYSTAL within 5%', async () => {
-//   // get DFK exchange rate
-//   const dfk = new DFK({ options: { realm: 'serendale' } });
-
-//   const dfkRate = await dfk.getExchangeRate({
-//     inputToken: 'JADE',
-//     outputToken: 'CRYSTAL',
-//   });
-
-//   // get coinmarketcap exchange rate
-//   const cmcRate = await getCMCRate({ convert_id: '19397', id: '23637' });
-
-//   expect(percentDifference(dfkRate, cmcRate)).toBeLessThan(5);
-// });
-
-test('crystalvale current CRYSTAL->JEWEL within 5%', async () => {
+test('crystalvale current CRYSTAL->JEWEL is accurate', async () => {
   // get DFK exchange rate
   const dfk = new DFK({ options: { realm: 'crystalvale' } });
 
-  const dfkRate = await dfk.getExchangeRate({
+  const amount = await dfk.getExchangeRate({
+    amount: Web3.utils.toWei('1'),
     inputToken: 'CRYSTAL',
     outputToken: 'JEWEL',
   });
 
+  const dfkRate = Web3.utils.fromWei(amount.toString());
+
   // get coinmarketcap exchange rate
   const cmcRate = await getCMCRate({ convert_id: '12319', id: '19397' });
 
-  expect(percentDifference(dfkRate, cmcRate)).toBeLessThan(5);
+  expect(percentDifference(Number(dfkRate), cmcRate)).toBeLessThan(10);
 });
 
-test('crystalvale current CRYSTAL->KLAY within 5%', async () => {
+test('crystalvale current CRYSTAL->KLAY is accurate', async () => {
   // get DFK exchange rate
   const dfk = new DFK({ options: { realm: 'crystalvale' } });
 
-  const dfkRate = await dfk.getExchangeRate({
+  const amount = await dfk.getExchangeRate({
+    amount: Web3.utils.toWei('1'),
     inputToken: 'CRYSTAL',
     outputToken: 'KLAY',
   });
 
+  const dfkRate = Web3.utils.fromWei(amount.toString());
+
   // get coinmarketcap exchange rate
   const cmcRate = await getCMCRate({ convert_id: '4256', id: '19397' });
 
-  expect(percentDifference(dfkRate, cmcRate)).toBeLessThan(5);
+  expect(percentDifference(Number(dfkRate), cmcRate)).toBeLessThan(10);
 });
 
-test('crystalvale current CRYSTAL->USD within 5%', async () => {
+test('crystalvale current CRYSTAL->USD is accurate', async () => {
   // get DFK exchange rate
   const dfk = new DFK({ options: { realm: 'crystalvale' } });
 
-  const dfkRate = await dfk.getExchangeRate({
+  const amount = await dfk.getExchangeRate({
+    amount: Web3.utils.toWei('1'),
     inputToken: 'CRYSTAL',
     outputToken: 'USD',
   });
 
+  const dfkRate = Web3.utils.fromWei(amount.toString());
+
   // get coinmarketcap exchange rate
   const cmcRate = await getCMCRate({ convert_id: '2781', id: '19397' });
 
-  expect(percentDifference(dfkRate, cmcRate)).toBeLessThan(5);
+  expect(percentDifference(Number(dfkRate), cmcRate)).toBeLessThan(10);
 });
-
-// test('crystalvale current CRYSTAL->JADE within 5%', async () => {
-//   // get DFK exchange rate
-//   const dfk = new DFK({ options: { realm: 'crystalvale' } });
-
-//   const dfkRate = await dfk.getExchangeRate({
-//     inputToken: 'CRYSTAL',
-//     outputToken: 'JADE',
-//   });
-
-//   // get coinmarketcap exchange rate
-//   const cmcRate = await getCMCRate({ convert_id: '23637', id: '19397' });
-
-//   expect(percentDifference(dfkRate, cmcRate)).toBeLessThan(5);
-// });

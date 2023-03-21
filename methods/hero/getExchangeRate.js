@@ -3,9 +3,11 @@ import currencies from '../../constants/currencies.js';
 import currencyPairs from '../../constants/currencyPairs.js';
 
 /**
- * fetch hero data from the chain, optionally enhancing with additional information
+ * return the amount you would get in exchange for some amount of a token (in wei)
  */
-export default async function ({ realm, inputToken, outputToken }, options) {
+export default async function ({ realm, amount, inputToken, outputToken }, options) {
+  if (!amount) throw 'getExchangeRate requires an amount input';
+
   // ensure this is a supported currency pair
   const currencyPair = currencyPairs[realm ?? this.realm][`${inputToken}-${outputToken}`];
   if (!currencyPair) throw 'currency pair not found';
@@ -14,6 +16,7 @@ export default async function ({ realm, inputToken, outputToken }, options) {
   const pairExists = options?.blockNumber ? options.blockNumber >= currencyPair.blockNumber : true;
   if (!pairExists) return null;
 
+  // get amounts out from the contract
   const inputTokenAddress = currencies[realm ?? this.realm][inputToken]?.address ?? inputToken;
   const inputTokenDecimals = currencies[realm ?? this.realm][inputToken]?.decimals ?? 18;
   const outputTokenAddress = currencies[realm ?? this.realm][outputToken]?.address ?? outputToken;
@@ -21,12 +24,17 @@ export default async function ({ realm, inputToken, outputToken }, options) {
 
   const amountsOut = await retry(() =>
     this.uniswapV2RouterContract.methods
-      .getAmountsOut('1000000000000000000', [inputTokenAddress, outputTokenAddress])
+      .getAmountsOut(amount, [inputTokenAddress, outputTokenAddress])
       .call(null, options?.blockNumber)
   );
 
-  const rate =
-    amountsOut[1] / (amountsOut[0] * Math.pow(10, outputTokenDecimals - inputTokenDecimals));
+  const amountOut = BigInt(amountsOut[1]);
 
-  return rate;
+  const decimalsDifference = outputTokenDecimals - inputTokenDecimals;
+
+  if (decimalsDifference < 0) {
+    return amountOut * 10n ** BigInt(Math.abs(decimalsDifference));
+  } else {
+    return amountOut / 10n ** BigInt(Math.abs(decimalsDifference));
+  }
 }
