@@ -6,8 +6,6 @@ describe('Crystalvale', () => {
 
     const hero = await dfk.getHero('1000000306607');
 
-    console.log(hero);
-
     // check immutable hero attrs
     expect(hero).toMatchObject({
       tokenId: '1000000306607',
