@@ -1,4 +1,6 @@
 import Web3 from 'web3';
+// constants
+import realms from './constants/realms.js';
 // contracts
 import contractAddresses from './constants/contractAddresses.js';
 // abi
@@ -14,13 +16,10 @@ export default class DFK {
   constructor(params) {
     const { options } = params ?? {};
 
-    // options
-    this.realm = options?.realm ?? 'crystalvale';
-    this.providerURL =
-      options?.web3?.providerURL ?? 
-      this.realm == 'crystalvale' ? 'https://subnets.avax.network/defi-kingdoms/dfk-chain/rpc'
-      : this.realm == 'serendale' ? 'https://cypress.fautor.app/archive'
-      : null;
+    // set the realm and associated params
+    this.realmId = options?.realmId ?? 'crystalvale';
+    this.realm = realms.find(realm => realm.id === this.realmId);
+    if(!this.realm) throw new Error(`Invalid realmId: ${realmId}`);
 
     // initialize web3
     this.initWeb3();
@@ -28,15 +27,15 @@ export default class DFK {
     // contracts
     this.heroContract = new this.web3.eth.Contract(
       Hero, 
-      contractAddresses[this.realm].hero
+      contractAddresses[this.realmId].hero
     );
     this.salesAuctionContract = new this.web3.eth.Contract(
       SalesAuction,
-      contractAddresses[this.realm].salesAuction
+      contractAddresses[this.realmId].salesAuction
     );
     this.uniswapV2RouterContract = new this.web3.eth.Contract(
       UniswapV2Router,
-      contractAddresses[this.realm].uniswapV2Router
+      contractAddresses[this.realmId].uniswapV2Router
     );
 
     // methods
@@ -45,7 +44,7 @@ export default class DFK {
   }
 
   initWeb3() {
-    this.web3 = new Web3(new Web3.providers.HttpProvider(this.providerURL));
+    this.web3 = new Web3(new Web3.providers.HttpProvider(this.realm.rpcUrl));
 
     // return revert strings when a transaction fails
     this.web3.eth.handleRevert = true;
