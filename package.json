@@ -2,7 +2,7 @@
   "name": "defikingdoms",
   "type": "module",
   "engines": {
-    "node": "16.13.2"
+    "node": "18.18.2"
   },
   "version": "1.0.0",
   "description": "allows easy interaction with DefiKingdoms",
