@@ -17,5 +17,5 @@ export default async function (tokenId, options) {
   if (!options?.blockNumber || options.blockNumber >= pjClaimStartBlock)
     parsedHero.pjStatus = getPjStatus(tokenId);
 
-  return { tokenId, ...parsedHero };
+  return { tokenId: Number(tokenId), ...parsedHero };
 }
