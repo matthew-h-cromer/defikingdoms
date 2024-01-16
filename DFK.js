@@ -9,6 +9,8 @@ import SalesAuction from './abi/SalesAuction.js';
 import UniswapV2Router from './abi/UniswapV2Router.js';
 // methods
 import getHero from './methods/hero/getHero.js';
+import getHeroV3 from './methods/hero/getHeroV3.js';
+import getHeroesV3 from './methods/hero/getHeroesV3.js';
 import getExchangeRate from './methods/hero/getExchangeRate.js';
 
 export default class DFK {
@@ -40,6 +42,8 @@ export default class DFK {
 
     // methods
     this.getHero = getHero.bind(this);
+    this.getHeroV3 = getHeroV3.bind(this);
+    this.getHeroesV3 = getHeroesV3.bind(this);
     this.getExchangeRate = getExchangeRate.bind(this);
   }
 
