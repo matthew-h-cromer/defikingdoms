@@ -6,7 +6,7 @@ describe('Crystalvale', () => {
 
     try {
       const hero = await dfk.getHeroV3('1000000000001', {
-        blockNumber: (await dfk.web3.eth.getBlockNumber()) - 1000
+        blockNumber: (await dfk.web3.eth.getBlockNumber()) - 30
       });
       console.log(hero);
     } catch (e) {
