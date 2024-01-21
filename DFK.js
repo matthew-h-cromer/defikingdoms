@@ -1,4 +1,5 @@
 import Web3 from 'web3';
+import { GraphQLClient } from 'graphql-request';
 // constants
 import realms from './constants/realms.js';
 // contracts
@@ -12,6 +13,7 @@ import getHero from './methods/hero/getHero.js';
 import getHeroV3 from './methods/hero/getHeroV3.js';
 import getHeroesV3 from './methods/hero/getHeroesV3.js';
 import getExchangeRate from './methods/hero/getExchangeRate.js';
+import getSaleAuctions from './methods/hero/getSaleAuctions.js';
 
 export default class DFK {
   /* prettier-ignore */
@@ -23,8 +25,9 @@ export default class DFK {
     this.realm = realms.find(realm => realm.id === this.realmId);
     if(!this.realm) throw new Error(`Invalid realmId: ${realmId}`);
 
-    // initialize web3
+    // initialize
     this.initWeb3();
+    this.initDfkApi();
 
     // contracts
     this.heroContract = new this.web3.eth.Contract(
@@ -45,6 +48,7 @@ export default class DFK {
     this.getHeroV3 = getHeroV3.bind(this);
     this.getHeroesV3 = getHeroesV3.bind(this);
     this.getExchangeRate = getExchangeRate.bind(this);
+    this.getSaleAuctions = getSaleAuctions.bind(this);
   }
 
   initWeb3() {
@@ -52,5 +56,9 @@ export default class DFK {
 
     // return revert strings when a transaction fails
     this.web3.eth.handleRevert = true;
+  }
+
+  initDfkApi() {
+    this.dfkApi = new GraphQLClient('https://api.defikingdoms.com/graphql');
   }
 }
