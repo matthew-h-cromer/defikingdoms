@@ -13,7 +13,9 @@ import getHero from './methods/hero/getHero.js';
 import getHeroV3 from './methods/hero/getHeroV3.js';
 import getHeroesV3 from './methods/hero/getHeroesV3.js';
 import getExchangeRate from './methods/hero/getExchangeRate.js';
-import getSaleAuctions from './methods/salesAuction/getSaleAuctions.js';
+import getSaleAuctions from './methods/saleAuction/getSaleAuctions.js';
+import addWallet from './methods/accounts/addWallet.js';
+import bid from './methods/saleAuction/bid.js';
 
 export default class DFK {
   /* prettier-ignore */
@@ -49,6 +51,8 @@ export default class DFK {
     this.getHeroesV3 = getHeroesV3.bind(this);
     this.getExchangeRate = getExchangeRate.bind(this);
     this.getSaleAuctions = getSaleAuctions.bind(this);
+    this.addWallet = addWallet.bind(this);
+    this.bid = bid.bind(this);
   }
 
   initWeb3() {
