@@ -13,7 +13,7 @@ import getHero from './methods/hero/getHero.js';
 import getHeroV3 from './methods/hero/getHeroV3.js';
 import getHeroesV3 from './methods/hero/getHeroesV3.js';
 import getExchangeRate from './methods/hero/getExchangeRate.js';
-import getSaleAuctions from './methods/hero/getSaleAuctions.js';
+import getSaleAuctions from './methods/salesAuction/getSaleAuctions.js';
 
 export default class DFK {
   /* prettier-ignore */
