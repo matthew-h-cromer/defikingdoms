@@ -12,6 +12,7 @@ import UniswapV2Router from './abi/UniswapV2Router.js';
 import getHero from './methods/hero/getHero.js';
 import getHeroV3 from './methods/hero/getHeroV3.js';
 import getHeroesV3 from './methods/hero/getHeroesV3.js';
+import getUserHeroes from './methods/hero/getUserHeroes.js';
 import getExchangeRate from './methods/hero/getExchangeRate.js';
 import getSaleAuctions from './methods/saleAuction/getSaleAuctions.js';
 import addWallet from './methods/accounts/addWallet.js';
@@ -50,6 +51,7 @@ export default class DFK {
     this.getHero = getHero.bind(this);
     this.getHeroV3 = getHeroV3.bind(this);
     this.getHeroesV3 = getHeroesV3.bind(this);
+    this.getUserHeroes = getUserHeroes.bind(this);
     this.getExchangeRate = getExchangeRate.bind(this);
     this.getSaleAuctions = getSaleAuctions.bind(this);
     this.addWallet = addWallet.bind(this);
