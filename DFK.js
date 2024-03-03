@@ -17,7 +17,8 @@ import getExchangeRate from './methods/hero/getExchangeRate.js';
 import getSaleAuctions from './methods/saleAuction/getSaleAuctions.js';
 import addWallet from './methods/accounts/addWallet.js';
 import bid from './methods/saleAuction/bid.js';
-import getAuction from './methods/saleAuction/getAuction.js';
+import getAuctionForHero from './methods/saleAuction/getAuctionForHero.js';
+import getAuctions from './methods/saleAuction/getAuctions.js';
 
 export default class DFK {
   /* prettier-ignore */
@@ -56,7 +57,8 @@ export default class DFK {
     this.getSaleAuctions = getSaleAuctions.bind(this);
     this.addWallet = addWallet.bind(this);
     this.bid = bid.bind(this);
-    this.getAuction = getAuction.bind(this);
+    this.getAuctionForHero = getAuctionForHero.bind(this);
+    this.getAuctions = getAuctions.bind(this);
   }
 
   initWeb3() {

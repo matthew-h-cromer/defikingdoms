@@ -4,7 +4,7 @@ describe('Crystalvale', () => {
     const dfk = new DFK();
 
     try {
-      const auction = await dfk.getAuction(2000000389685);
+      const auction = await dfk.getAuctionForHero(1000000208269);
 
       console.log({ auction });
       console.log(Object.keys(auction));
